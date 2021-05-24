@@ -66,23 +66,24 @@ class Binance():
             trades = self._get_trades(coin)
 
             if trades:
-                avg_price = float(self.client.get_avg_price(
-                    symbol=f"{coin}USDT")["price"])
+                avg_price = float(
+                    self.client.get_avg_price(symbol=f"{coin}USDT")["price"])
                 total = 0
-                asset_balance = self.client.get_asset_balance(asset=coin)[
-                    'free']
+                asset_balance = float(self.client.get_asset_balance(
+                    asset=coin)['free'])
 
                 for trade in trades:
                     quantity, price = self._get_quantity_price(trade)
 
                     if quantity > 0.0 and price > 0.0:
                         total += self._get_total(buy_price=price,
-                                                 current_price=avg_price, quantity=quantity)
+                                                 current_price=avg_price,
+                                                 quantity=quantity)
 
                 self.prices.append(float(total))
                 self.coinss.append(coin)
                 self.balance.append(float(asset_balance))
 
-                message += f"{coin}, you have: {asset_balance}\nYou buy at {price}\nCurrent price {avg_price}\nYou are winning: {total}\n\n"
+                message += f"<b>{coin}</b>, you have: {asset_balance}\nYou buy at {price}\nCurrent price {avg_price}\nYou are winning: {total:.2f}\n--------------------------\n\n"
 
         return message
