@@ -13,7 +13,7 @@ my_image = Image()
 
 def send_text(chat_id):
     mssg = my_binance.binance()
-    telegram.send_message(mssg, chat_id)
+    telegram.send_message(message=mssg, chat_id=chat_id)
 
 
 def send_image(chat_id):
@@ -25,7 +25,7 @@ def send_image(chat_id):
 
     if err:
         telegram.send_message(
-            "There was a problem with the image, please try again", chat_id)
+            message="There was a problem with the image, please try again", chat_id=chat_id)
     else:
         telegram.send_message(chat_id=chat_id, image=image)
 
@@ -53,6 +53,6 @@ while (True):
                     send_image(chat_id)
             else:
                 mssg = "Sorry this is a personal bot, you can't access it, but you can implement your own bot using the source code :) https://github.com/Daniel-Alba15/Telegram-Crypto-Bot"
-                telegram.send_message(mssg, chat_id)
+                telegram.send_message(message=mssg, chat_id=chat_id)
 
         offset += 1

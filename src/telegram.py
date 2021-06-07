@@ -8,7 +8,7 @@ class Telegram():
     def __init__(self):
         self.URL = 'https://api.telegram.org/bot' + config("TELEGRAM_TOKEN")
 
-    def send_message(self, message, chat_id, image=None):
+    def send_message(self, chat_id, message="", image=None):
         data = {
             "chat_id": chat_id,
             "parse_mode": "HTML",
@@ -30,14 +30,12 @@ class Telegram():
         endpoint = "/sendMessage"
 
         res = requests.get(self.URL + endpoint, json=data)
-        print(res.json())
         logging.info(res.json())
 
         if image:
             endpoint = '/sendPhoto'
             data['photo'] = image
             res = requests.post(self.URL + endpoint, json=data)
-            print(res.json())
 
             logging.info(res.json())
             return
