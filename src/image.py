@@ -21,7 +21,8 @@ class Image():
         df = pd.DataFrame(data)
 
         plt.ylim([min(prices) - 1, max(prices) + 1])
-        d_now = datetime.now(pytz.timezone("America/Bogota")).strftime("%d/%m/%Y, %H:%M")
+        d_now = datetime.now(pytz.timezone("America/Bogota")
+                             ).strftime("%d/%m/%Y, %H:%M")
         plt.title(d_now)
 
         plt.bar(df["coins"], df["prices"], facecolor="#9999ff")

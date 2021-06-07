@@ -2,6 +2,7 @@ from decouple import config
 import requests
 import logging
 
+
 class Imgur():
 
     @staticmethod

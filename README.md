@@ -15,7 +15,7 @@ pip install -r requirements.txt
 
 ## Usage
 
-Unfortunately Binance doesn't have Oauth authentication available yet, so you'll have to generate your own [Binance](https://www.binance.com/my/settings/api-management), [Telegram] (https://core.telegram.org/bots) and [Imgur](https://apidocs.imgur.com) api keys.
+Unfortunately Binance doesn't have Oauth authentication available yet, so you'll have to generate your own [Binance](https://www.binance.com/my/settings/api-management), [Telegram](https://core.telegram.org/bots) and [Imgur](https://apidocs.imgur.com) api keys.
 
 Do not forget to save all of this on your ```.env``` file.
 
