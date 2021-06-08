@@ -4,7 +4,6 @@ from image import Image
 from imgur import Imgur
 from decouple import config
 
-
 offset = 0
 telegram = Telegram()
 my_binance = Binance()
@@ -17,17 +16,26 @@ def send_text(chat_id):
 
 
 def send_image(chat_id):
-    image = my_image.generate_report(
-        my_binance.get_coins(), my_binance.get_prices(),
-        my_binance.get_balance())
-    image = my_image.get_image()
-    image, err = Imgur.upload_image(image=image)
+    coins = my_binance.get_coins()
+    prices = my_binance.get_prices()
+    balance = my_binance.get_balance()
 
-    if err:
-        telegram.send_message(
-            message="There was a problem with the image, please try again", chat_id=chat_id)
+    if coins:
+        image = my_image.generate_report(coins, prices, balance)
+        image = my_image.get_image()
+        image, err = Imgur.upload_image(image=image)
+
+        if err:
+            telegram.send_message(
+                message="There was a problem with the image, please try again",
+                chat_id=chat_id)
+        else:
+            telegram.send_message(chat_id=chat_id, image=image)
     else:
-        telegram.send_message(chat_id=chat_id, image=image)
+        telegram.send_message(
+            message=
+            "Use first /text command to collect the data and generate the image",
+            chat_id=chat_id)
 
 
 while (True):

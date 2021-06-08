@@ -6,7 +6,7 @@ from binance.exceptions import BinanceAPIException
 class Binance():
     def __init__(self):
         self.client = Client(config("API_KEY"), config("API_SECRET"))
-        self.info = self.client.get_account()
+        self.info = self.client.get_account()   
         self.coinss = []
         self.prices = []
         self.balance = []
@@ -57,6 +57,9 @@ class Binance():
         return self.prices
 
     def binance(self):
+        self.coinss = []
+        self.prices = []
+        self.balance = []
         balances = self.info['balances']
 
         coins = self._get_coins(balances)
@@ -85,5 +88,6 @@ class Binance():
                 self.balance.append(float(asset_balance))
 
                 message += f"<b>{coin}</b>, you have: {asset_balance}\nYou buy at {price}\nCurrent price {avg_price}\nYou are winning: {total:.2f}\n--------------------------\n\n"
-
+        print("COINS", self.coinss)
+        print("BALANCE", self.balance)
         return message

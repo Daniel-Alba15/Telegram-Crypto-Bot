@@ -16,7 +16,7 @@ class Image():
 
         return self.image_b64
 
-    def generate_report(self, coins, prices, have):
+    def generate_report(self, coins=0, prices=0, have=0):
         data = {"coins": coins, "prices": prices, "have": have}
         df = pd.DataFrame(data)
 
