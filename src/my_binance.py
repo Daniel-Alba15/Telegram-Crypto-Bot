@@ -13,7 +13,7 @@ class Binance():
 
     def _get_trades(self, coin):
         """Return a list of trades based on the coin agains USDT or/and BUSD"""
-        if coin != "USDT" and coin != "BUSD":
+        if coin != "USDT" and coin != "BUSD" and coin != "NFT":
             trades = self.client.get_my_trades(symbol=f"{coin}USDT")
             try:
                 trades += self.client.get_my_trades(symbol=f"{coin}BUSD")
